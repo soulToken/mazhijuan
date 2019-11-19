@@ -41,9 +41,9 @@
           <el-table-column
             fixed="right"
             label="操作"
-            width="250">
+            width="260">
             <template slot-scope="scope">
-              <el-button @click="preview=true" type="text" size="small"><img src="../../../static/accountManagement/write.png" alt="" class="icon">预览</el-button>
+              <el-button @click="preview=true" type="text" size="small"><img src="../../../static/accountManagement/view.png" alt="" style="width:14px;height:14px;" class="icon">预览</el-button>
               <el-button @click="handleClick(scope.row)" type="text" size="small"><img src="../../../static/accountManagement/write.png" alt="" class="icon">编辑</el-button>
               <el-button type="text" size="small" @click="status()"><img src="../../../static/accountManagement/forbidden.png" alt="" class="statused icon">禁用</el-button>
               <el-button type="text" size="small" @click="deleted()"><img src="../../../static/accountManagement/delete.png" alt="" class="icon">删除</el-button>
@@ -92,7 +92,7 @@
             label="操作"
             width="250">
             <template slot-scope="scope">
-              <el-button @click="preview=true" type="text" size="small"><img src="../../../static/accountManagement/write.png" alt="" class="icon">预览</el-button>
+              <el-button @click="preview=true" type="text" size="small"><img src="../../../static/accountManagement/view.png" alt="" class="icon">预览</el-button>
             </template>
           </el-table-column>
         </el-table>

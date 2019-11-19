@@ -38,7 +38,7 @@
                   <p>强</p>
                 </div>
               </div>
-              <el-button type="primary" @click="toroute('/index/ChangePass')" style="margin-top: 10px;background: #26c6da;border-color: #26c6da;">修改密码</el-button>
+              <el-button type="primary" class="" @click="toroute('/index/ChangePass')" style="width: 100px;height: 40px; position: absolute; bottom: 5px; left: 50%;margin-left:-50px;background: #26c6da;border-color: #26c6da;">修改密码</el-button>
             </div>
 
           </div>

@@ -28,3 +28,16 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+# 完成部分
+
+1,3,8,10,21
+# 未完成部分 以及原因
+1: logo图暂无
+4: 接口没有通
+5：同上
+6：同上
+7：点击付款方式 应该是什么页面？
+9: 不明白那里不一样
+11: 未发现文档问题

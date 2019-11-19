@@ -1,12 +1,13 @@
 <template>
-    <div class="box">
-      <p>创建合同</p>
+    <div class="box" style="width:100%;height:100%;min-width:1000px;">
+      <!-- <p>创建合同</p> -->
       <div class="Addbox">
         <div class="addLfet">
 <!--          <div class="opinionswitch">-->
 <!--          <p @click="show=false" :style="{'background':show==false?'#1e88e5':'#fff','color':show==false?'#fff':'#666'}">模板创建</p>-->
 <!--          <p @click="show=true" :style="{'background':show==true?'#1e88e5':'#fff','color':show==false?'#666':'#fff'}">律师代写</p>-->
 <!--        </div>-->
+          <p>创建合同</p> 
           <div @click="Choice=true"><p>模板选择</p><img src="../../../static/img/add.png" alt=""></div>
           <div><p>合同标题:</p><input type="text" v-model="title" placeholder="请输入合同标题"><span>*</span></div>
           <div><p>甲方名称:</p><input type="text" v-model="aname" placeholder="请输入甲方名称"><span>*</span></div>
@@ -212,6 +213,9 @@
   }
   .Addbox{
     display: flex;
+    flex-direction: row;
+    width:100%;
+    height: 100%;
   }
   .Addbox>div:nth-of-type(1){
     width: 600px;
@@ -229,7 +233,12 @@
     line-height: 30px;
     font-weight: bold;
   }
-  .addLfet>div:nth-of-type(1){
+  .addLfet{
+    height:100%;
+    width:600px!important;
+    overflow-y:auto; 
+  }
+  .addLfet div:nth-of-type(1){
     height: 34px;
     line-height: 34px;
     display: flex;
@@ -290,10 +299,14 @@
   .addright{
     background: #fff;
     width: 100%;
+    height:100%;
     margin-left: 40px;
     padding: 0 60px;
     padding-top: 60px;
     padding-bottom: 130px;
+    box-sizing: border-box;
+    overflow: auto;
+    min-width: 600px;
   }
   .addright>input:nth-of-type(1){
     display: block;

@@ -280,7 +280,7 @@
   .el-main {
     background-color: #ececec;
     color: #333;
-    padding: 55px 30px 30px 30px;
+    padding: 55px 30px 0px 30px;
 
   }
   .cx_message>div:nth-of-type(1)>img{

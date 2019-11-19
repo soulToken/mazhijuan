@@ -908,6 +908,7 @@
     border-radius: 8px;
     color: #fff;
     text-align: center;
+    cursor: pointer;
     line-height: 40px;
     margin: auto;
     margin-top: 10px;
