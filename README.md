@@ -32,7 +32,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 # 完成部分
 
-1,3,8,10,21
+1,3,8,10,16,17,20,21,22，
+# 待验证部分
+11,23
 # 未完成部分 以及原因
 1: logo图暂无
 4: 接口没有通

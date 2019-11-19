@@ -413,9 +413,9 @@
   }
   .cx_message{
     width: 810px;
-    height: 810px;
+    /* height: 810px; */
     position: fixed;
-    top: 0;
+    top: 10px;
     left: 0;
     right: 0;
     bottom: 0;

@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" style="min-width:1200px;">
       <p>资金管理</p>
       <div class="captop">
         <div>
@@ -22,7 +22,7 @@
             <p>资金明细</p>
             <p>共<span>5</span>条记录</p>
           </div>
-          <p style="cursor: pointer" @click="detailed=false">查看</p>
+          <p style="cursor: pointer" @click="detailed=true">查看</p>
         </div>
         <div>
           <div @click="czshow = true;currentType=1" style="cursor: pointer">充值</div>
@@ -124,7 +124,7 @@
       </div>
       <div class="cx_message cz_message" v-if="czgood">
         <div>
-          <p>充值</p><img @click="czgood=false" src="../../../static/img/esc.png" alt="">
+          <p>{{currentType==2?'提现':''}}{{currentType==1?'充值':''}}</p><img @click="czgood=false" src="../../../static/img/esc.png" alt="">
         </div>
         <div class="message_val czgood_val">
           <div class="ts">

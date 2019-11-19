@@ -397,6 +397,7 @@
     .afresh_box {
         width: 100%;
         margin: 0 auto;
+        min-width:1250px;
     }
 
    .afresh_box .afresh_lift {

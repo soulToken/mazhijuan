@@ -255,7 +255,8 @@
     color: #ffffff;
     text-align: center;
     /*line-height: 200px;*/
-    overflow: hidden;
+    /* overflow: hidden; */
+    overflow: auto;
   }
   .el-menu-item{
     background-color:#015293 !important;
@@ -280,7 +281,7 @@
   .el-main {
     background-color: #ececec;
     color: #333;
-    padding: 55px 30px 0px 30px;
+    padding: 30px 20px 0px 20px;
 
   }
   .cx_message>div:nth-of-type(1)>img{

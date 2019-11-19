@@ -9,7 +9,7 @@
           <div class="employee_list">
             <el-table
               :data="tableData.result"
-              :stripe="true"
+           
               border
               style="width: 100%;text-align: center;">
               <el-table-column
@@ -30,8 +30,9 @@
                 label="状态"
                 width="80">
                 <template slot-scope="scope">
-                <p v-if="scope.row.status == 2">已回复</p>
-                <p v-else>待回复</p>
+                <p v-if="scope.row.status == 2" style="color:#fe562f">已回复</p>
+                <p v-else-if="scope.row.status == 1" style="color:#019a01">待回复</p>
+                <p v-else>已采纳</p>
                 </template>
               </el-table-column>
               <el-table-column
@@ -236,10 +237,10 @@
   .opinion>div:nth-of-type(1){
     background: #fff;
     width: 1100px;
-    height: 700px;
-    margin-right: 30px;
+    /* height: 700px; */
+    margin-right: 20px;
     border-radius: 5px;
-    padding: 0 30px;
+    padding: 0 15px;
     box-sizing: border-box;
   }
   .opinion>div:nth-of-type(2){
