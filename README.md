@@ -30,6 +30,10 @@ npm test
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
+# 问题
+马哥 我这边把路由部分注释了 可以先直接通过url 访问页面 等最后开服务并且 写完 再把注释打开
+
+
 # 完成部分
 
 1,3,8,10,16,17,20,21,22，
