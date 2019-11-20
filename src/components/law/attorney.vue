@@ -117,6 +117,7 @@
     </div>
     <div class="block" style="text-align: center;margin-top: 20px">
       <el-pagination
+      background
         @current-change="handleCurrentChange"
         :current-page.sync="currentPage"
         :page-size="list.pageSize"
@@ -225,12 +226,13 @@
               </div>
               <div style="text-align:right;">
                 <el-pagination
+                   background
                   @size-change="handleSizeChange1"
                   @current-change="handleCurrentChange1"
                   :current-page="currentPage1"
-                  :page-sizes="[10, 20, 30, 40]"
+                 
                   :page-size="pageSize1"
-                  layout="total, sizes, prev, pager, next, jumper"
+                  layout="total,  prev, pager, next, jumper"
                   :total="total1"
                 ></el-pagination>
               </div>
@@ -263,12 +265,13 @@
               </div>
               <div style="text-align:right;">
                 <el-pagination
+                  background
                   @size-change="handleSizeChange2"
                   @current-change="handleCurrentChange2"
                   :current-page="currentPage2"
-                  :page-sizes="[10, 20, 30, 40]"
+               
                   :page-size="pageSize2"
-                  layout="total, sizes, prev, pager, next, jumper"
+                  layout="total, prev, pager, next, jumper"
                   :total="total2"
                 ></el-pagination>
               </div>
@@ -294,12 +297,13 @@
 
               <div style="text-align:right;">
                 <el-pagination
+                background
                   @size-change="handleSizeChange4"
                   @current-change="handleCurrentChange4"
                   :current-page="currentPage4"
-                  :page-sizes="[10, 20, 30, 40]"
+                  
                   :page-size="pageSize4"
-                  layout="total, sizes, prev, pager, next, jumper"
+                  layout="total, prev, pager, next, jumper"
                   :total="total4"
                 ></el-pagination>
               </div>
@@ -313,12 +317,13 @@
 
               <div style="text-align:right;">
                 <el-pagination
+                background
                   @size-change="handleSizeChange3"
                   @current-change="handleCurrentChange3"
                   :current-page="currentPage3"
-                  :page-sizes="[10, 20, 30, 40]"
+               
                   :page-size="pageSize3"
-                  layout="total, sizes, prev, pager, next, jumper"
+                  layout="total, prev, pager, next, jumper"
                   :total="total3"
                 ></el-pagination>
               </div>
@@ -1261,7 +1266,7 @@ export default {
 }
 .condition > div > div:nth-of-type(2) {
   background: #fff;
-  width: 100%;
+  /* width: 100%; */
 }
 .condition > div ul {
   display: flex;
