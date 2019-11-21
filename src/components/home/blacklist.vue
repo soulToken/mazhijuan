@@ -6,12 +6,46 @@
     <p>共计<span class="blacklist_number">128</span>家</p>
 </div>
 <div class="list_box">
-<div class="blacklist_tabel" v-for="arr in tableData.result">
+<!-- <div class="blacklist_tabel" v-for="arr in tableData.result">
     <div>
     <p>{{arr.companyName}}</p>
     </div>
     
-</div>
+</div> -->
+ <el-table
+  v-if="tableData.result"
+    :data="tableData.result"
+    border
+    stripe
+    :show-header="false"
+    style="width: 100%">
+    <el-table-column
+      prop="date"
+      label="日期"
+      >
+      <template slot-scope="scope">
+          {{scope.row[0]?'· '+scope.row[0].companyName:''}}
+      </template>
+    </el-table-column>
+
+    <el-table-column
+      prop="name"
+      label="姓名"
+      >
+       <template slot-scope="scope">
+          {{scope.row[1]?'· '+scope.row[1].companyName:''}}
+      </template>
+    </el-table-column>
+    <el-table-column
+      prop="address"
+      label="地址">
+       <template slot-scope="scope">
+          {{scope.row[2]?'· '+scope.row[2].companyName:''}}
+      </template>
+    </el-table-column>
+  </el-table>
+
+
 </div>
     </div>
   <div class="block" style="text-align: center;margin-top: 20px">
@@ -36,6 +70,7 @@
         return {
           currentPage: 1,
           tableData:{},
+          tableArr:[]
         }
       },
       mounted(){
@@ -50,6 +85,17 @@
         this.$http.post('/api/api/user/company/blacklist/findPage',{pageNum:this.currentPage,pageSize:15,}).then(function (res) {
           if (res.body.code==200){
             this.tableData=res.body.data;
+
+
+             var newArr = [];
+             let data=this.tableData.result;
+            for (var i = 0; i < data.length; i += 3) {
+                newArr.push(data.slice(i, i + 3));
+            }
+            this.tableData.result=newArr
+
+        
+            
           }else{
             this.$message.error(res.body.msg);
           }
@@ -60,6 +106,16 @@
           this.$http.post('/api/api/user/company/blacklist/findPage',{pageNum:val,pageSize:15,}).then(function (res) {
             if (res.body.code==200){
               this.tableData=res.body.data;
+
+                var newArr = [];
+             let data=this.tableData.result;
+            for (var i = 0; i < data.length; i += 3) {
+                newArr.push(data.slice(i, i + 3));
+            }
+            this.tableData.result=newArr
+         
+
+
             }else{
               this.$message.error(res.body.msg);
             }
@@ -127,6 +183,15 @@
 .list_box div div p{
     text-align: center;
     font-size: 15px;
+}
+.list_box div:nth-child(4n){
+  background:red
+}
+.list_box div:nth-child(5n){
+  background:red
+}
+.list_box div:nth-child(6n){
+  background:red
 }
 .blacklist_tabel{
     line-height: 60px;
