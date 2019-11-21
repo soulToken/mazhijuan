@@ -130,12 +130,13 @@
       :visible.sync="lawDetail"
       width="70%"
       top="5vh"
+      class="nopadding"
       :before-close="handleClose"
     >
       <div class="law_detail">
         <div class="titles">
           <p>律师详情</p>
-          <img src="../../../static/lawImage/close.png" alt @click="closeBox()" />
+          <img style="cursor:pointer" src="../../../static/lawImage/close.png" alt @click="closeBox()" />
         </div>
         <div class="scroll_box">
           <div class="law_datum">
@@ -844,6 +845,9 @@ export default {
 .harry .el-dialog__header {
   display: none;
 }
+.nopadding .el-dialog__body{
+  padding:0;
+}
 </style>
 <style scoped>
 .look_law,
@@ -1256,13 +1260,13 @@ export default {
   border-bottom: none;
 }
 .condition > div > div:nth-of-type(1) {
-  width: 170px;
-  background: #f9f9f9;
+  width: 150px;
+  /* background: #f9f9f9; */
   text-align: center;
   color: #666;
   font-weight: bold;
-  border-right: 1px solid #dfdfdf;
-  border-bottom: 1px solid #dfdfdf;
+  /* border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf; */
 }
 .condition > div > div:nth-of-type(2) {
   background: #fff;

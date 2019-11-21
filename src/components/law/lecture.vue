@@ -8,17 +8,29 @@
         </div>
 
         <div class="lecture_list">
-            <div class="lecture_content" v-for="(item,index) in contentList" @click="detailButton(item.id)" style="cursor:pointer;">
+
+
+            <el-row>
+
+        
+        
+            <el-col  :xs="8"  :sm="6"  :md="6" :lg="6"	:xl="6"  v-for="(item,index) in contentList" :key="index">
+
+          
+            <div class="lecture_content"   @click="detailButton(item.id)" style="cursor:pointer;">
                 <img :src="listPicArr[0].src" alt="" class="pic"/>
 <!--                <video id="pic" :src="item.img" :poster="item.videoImg" :muted="muteStatus" :autoplay="playStatused" controls height="414" width="720" class="pic">-->
 <!--                    your browser does not support the video tag-->
 <!--                </video>-->
                 <p class="title">{{item.title}}</p>
-                <p class="picese" v-if="id!=3"><span>课程价格：</span><span class="money">￥{{item.price}}</span><span class="icon"><img
-                        src="../../../static/lawImage/people_icon.png" alt=""></span><span class="people_num">{{item.paidCount}}</span>
+                <p class="picese" v-if="id!=3"><span>课程价格：</span><span class="money">￥{{item.price}}</span><span class="people_num">{{item.paidCount}}</span>
+                <span class="icon"><img
+                        src="../../../static/lawImage/people_icon.png" alt=""></span>
                 </p>
-                <p class="lecture_detail" id='con'><span class="details">{{item.description}}<span
-                        class="detail_button"  v-if="id!=3">[详情]</span></span>
+                <p class="lecture_detail" id='con'><span class="details">{{item.description}}
+                       <!-- <span
+                        class="detail_button"  v-if="id!=3">[详情]</span> -->
+                    </span>
                 </p>
                 <div class="list_button" v-if="id==3">
                     <el-button type="success" size="medium">开始学习</el-button>
@@ -40,6 +52,8 @@
                 
 
             </div>
+            </el-col>
+            </el-row>
         </div>
 
          <!-- 详情-->
@@ -707,6 +721,18 @@ import { debug } from 'util';
   background: #1e88e5;
   color: #ffffff;
 }
+.details{
+  display: block;
+  height:36px;
+  line-height:16px;
+     text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
     p {
         cursor: pointer;
     }
@@ -748,7 +774,7 @@ import { debug } from 'util';
     border: 1px solid #dfdfdf;
 }
     .lecture_content {
-        width: 24%;
+        /* width: 24%; */
         background: #ffffff;
         border: 1px solid #dfdfdf;
         border-radius: 5px;
@@ -774,14 +800,16 @@ import { debug } from 'util';
     }
 
     .icon {
-        margin-left: 50px;
-
+        /* margin-left: 50px; */
+      float:right;
     }
 
     .people_num {
         font-size: 13px;
         margin-left: 3px;
         color: #999999;
+        float: right;
+        line-height: 23px;
     }
 
     .money {
@@ -827,6 +855,7 @@ import { debug } from 'util';
         width: 30%;
         border-radius: 5px;
         text-align: center;
+        min-width: 70px;
     }
 
     .text img {
