@@ -36,7 +36,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 # 完成部分
 
-1,2,3,4,8,10,12,14,16,17,20,21,22，
+1,2,3,4,5,8,10,12,14,16,17,20,21,22，
 # 待验证部分
 11,23
 # 未完成部分 以及原因

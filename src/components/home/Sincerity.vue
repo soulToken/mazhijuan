@@ -22,14 +22,18 @@
         </el-pagination>
       </div>
       <!-- 详情 -->
-      <el-dialog title="收货地址" :visible.sync="dialogVisible">
-         <p>{{bodyget.title}}</p>
+          <div class="cx_message" v-if="dialogVisible">
+        <div>
+          <p>诚信动态</p><img @click="dialogVisible=false" src="../../../static/img/esc.png" alt="">
+        </div>
+        <div class="message_val">
+          <p>{{bodyget.title}}</p>
           <p>发布时间：{{bodyget.puhlishDate}}</p>
           <pre v-html="bodyget.content">
              　
           </pre>
-          
-      </el-dialog>
+        </div>
+      </div>
     </div>
     
 </template>
@@ -82,6 +86,76 @@
 </script>
 
 <style scoped>
+
+  .message_val>pre{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding-top: 30px;
+  }
+  .message_val>p:nth-of-type(1){
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    padding-top: 22px;
+  }
+  .message_val>p:nth-of-type(2){
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    padding: 11px;
+    border-bottom: 1px solid #ccc;
+  }
+  .message_val{
+    height: calc(810px - 85px);
+    padding: 0 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 20px 20px 30px 0;
+  }
+  /*滚动条样式*/
+  .message_val::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+  }
+  .message_val::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #1d89e4;
+  }
+  .message_val::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+  }
+.cx_message>div:nth-of-type(1)>img{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 7px;
+    margin-right: 10px;
+  }
+  .cx_message>div:nth-of-type(1){
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+    background: #1d89e4;
+    color: #ffffff;
+    line-height: 35px;
+    padding-left: 20px;
+  }
+  .cx_message{
+    width: 810px;
+    /* height: 810px; */
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #ffffff;
+  }
   .dt-xx>li{
     width: 100%;
     font-size: 14px;
