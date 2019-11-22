@@ -5,11 +5,11 @@
         <p @click="show=true" :style="{'background':show==true?'#1e88e5':'#fff','color':show==false?'#666':'#fff'}">新增</p>
       </div>
       <div class="opinion">
-        <div class="opinionval" v-if="show==false">
+        <div class="opinionval" v-if="show==false" style="padding-top:20px;">
           <div class="employee_list">
             <el-table
               :data="tableData.result"
-           
+            
               border
               style="width: 100%;text-align: center;">
               <el-table-column
@@ -41,13 +41,14 @@
                 width="120">
                 <template slot-scope="scope">
                   <el-button type="text" size="small" @click="getis(scope.row.id)">查看</el-button>
-                  <el-button type="text" size="small" @click="deleted()">删除</el-button>
+                  <el-button type="text" size="small" @click="deleted(scope.$index)">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>
           </div>
           <div class="block" style="text-align: center;margin-top: 20px">
             <el-pagination
+              background
               @current-change="handleCurrentChange"
               :current-page.sync="currentPage"
               :page-size="tableData.pageSize"
@@ -126,6 +127,21 @@
               this.$message.error(res.body.msg);
             }
           });
+        },
+        deleted(index){
+               this.$confirm('此操作将永久删除该, 是否继续?', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+                }).then(() => {
+                  this.tableData.result.splice(index,1)
+                  this.$message({
+                    type: 'success',
+                    message: '删除成功!'
+                  });
+                }).catch(() => {
+                          
+                });
         },
         getis(id){
           this.$http.get('/api/api/help/suggestionHand/getById',{params:{id:id,token:localStorage.getItem("token")}}).then(function (res) {
@@ -233,6 +249,7 @@
   .opinion{
     display: flex;
     margin-top: 20px;
+   
   }
   .opinion>div:nth-of-type(1){
     background: #fff;
