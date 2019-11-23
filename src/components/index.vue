@@ -5,7 +5,8 @@
       <!--        <el-radio-button :label="false">展开</el-radio-button>-->
       <!--        <el-radio-button :label="true">收起</el-radio-button>-->
       <!--      </el-radio-group>-->
-      <img class="logo" src="../../static/img/logo3.png" alt="">
+      <img class="logo" v-if="isCollapse" src="../../static/img/logo2.png" alt="" style="width:30px;">
+      <img class="logo" v-else src="../../static/img/logo3.png" alt="">
       <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
         <el-menu-item index="1" @click="toroute('/index/home')">
           <i class="el-icon-office-building"></i>

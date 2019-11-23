@@ -5,11 +5,11 @@
         <p @click="show=true" :style="{'background':show==true?'#1e88e5':'#fff','color':show==false?'#666':'#fff'}">新增</p>
       </div>
       <div class="opinion">
-        <div class="opinionval" v-if="show==false" style="padding-top:20px;">
+        <div class="opinionval" v-if="show==false">
           <div class="employee_list">
             <el-table
               :data="tableData.result"
-            
+           
               border
               style="width: 100%;text-align: center;">
               <el-table-column
@@ -41,14 +41,13 @@
                 width="120">
                 <template slot-scope="scope">
                   <el-button type="text" size="small" @click="getis(scope.row.id)">查看</el-button>
-                  <el-button type="text" size="small" @click="deleted(scope.$index)">删除</el-button>
+                  <el-button type="text" size="small" @click="deleted(scope.row.id)">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>
           </div>
           <div class="block" style="text-align: center;margin-top: 20px">
             <el-pagination
-              background
               @current-change="handleCurrentChange"
               :current-page.sync="currentPage"
               :page-size="tableData.pageSize"
@@ -106,7 +105,8 @@
             currentPage: 1,
             help:'',
             tite:'',
-            val:''
+            val:'',
+            pageNum:1
           }
         },
       mounted() {
@@ -123,25 +123,11 @@
           this.$http.post('/api/api/help/suggestionHand/findPage',{pageNum:val,pageSize:15,}).then(function (res) {
             if (res.body.code==200){
               this.tableData=res.body.data;
+              this.pageNum = val;
             }else{
               this.$message.error(res.body.msg);
             }
           });
-        },
-        deleted(index){
-               this.$confirm('此操作将永久删除该, 是否继续?', '提示', {
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消',
-                  type: 'warning'
-                }).then(() => {
-                  this.tableData.result.splice(index,1)
-                  this.$message({
-                    type: 'success',
-                    message: '删除成功!'
-                  });
-                }).catch(() => {
-                          
-                });
         },
         getis(id){
           this.$http.get('/api/api/help/suggestionHand/getById',{params:{id:id,token:localStorage.getItem("token")}}).then(function (res) {
@@ -152,6 +138,38 @@
               this.$message.error(res.body.msg)
             }
           })
+        },
+        // 删除 
+        deleted(id){
+          var that = this;
+            this.$confirm('此操作将永久删除此条记录, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).then(() => {
+                this.$http.get('/api/api/help/suggestionHand/deleteById',{params:{id:id}}).then(function (res) {
+                  if (res.body.code == 200){
+                    this.$http.post('/api/api/help/suggestionHand/findPage',{pageNum:that.pageNum,pageSize:15}).then(function (res) {
+                      if (res.body.code==200){
+                        this.tableData=res.body.data;
+                      }else{
+                        this.$message.error(res.body.msg);
+                      }
+                    });
+                    this.$message({
+                      type: 'success',
+                      message: '删除成功!'
+                    });
+                  }else {
+                    this.$message.error(res.body.msg)
+                  }
+                })
+              }).catch(() => {
+                this.$message({
+                  type: 'info',
+                  message: '已取消删除'
+                });          
+              });
         },
         btn(){
           this.$http.post('/api/api/help/suggestionHand/save',{title:this.tite,content:this.val}).then(function (res) {
@@ -249,7 +267,6 @@
   .opinion{
     display: flex;
     margin-top: 20px;
-   
   }
   .opinion>div:nth-of-type(1){
     background: #fff;
@@ -257,7 +274,7 @@
     /* height: 700px; */
     margin-right: 20px;
     border-radius: 5px;
-    padding: 0 15px;
+    padding: 10px 10px 0;
     box-sizing: border-box;
   }
   .opinion>div:nth-of-type(2){

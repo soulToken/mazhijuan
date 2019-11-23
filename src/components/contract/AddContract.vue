@@ -90,11 +90,11 @@
           <p>生效二</p>
         </div>
       </div>
-      <div class="cx_message cz_message" v-if="Choice">
+      <div class="cx_message cz_message" v-if="Choice" >
         <div>
           <p>模板选择</p><img @click="Choice=false" src="../../../static/img/esc.png" alt="">
         </div>
-        <div class="message_val">
+        <div class="message_val" >
           <template>
             <el-table
               :data="tableData"
@@ -135,13 +135,132 @@
           </div>
         </div>
       </div>
-      <div class="cx_message cz_message" v-if="payment">
+      <div class="cx_message cz_message" style="display:flex;flex-direction:column" v-if="payment">
         <div>
-          <p>付款方式</p><img @click="Choice=false" src="../../../static/img/esc.png" alt="">
+          <p>付款方式</p><img @click="payment=false" src="../../../static/img/esc.png" alt="">
         </div>
-        <div class="message_val">
+        <div class="message_val" style="flex:1;overflow:auto;">
           <div>
-            <p>付款方式：</p>
+            <p class="payWay_tit">
+              付款方式：<el-radio-group v-model="radio">
+    <el-radio :label="0">一次付款</el-radio>
+    <el-radio :label="1">定期付款</el-radio>
+    <el-radio :label="2">阶段付款</el-radio>
+  </el-radio-group>
+            </p>
+            <!-- 一次付款 -->
+            <el-form v-if="radio==0" ref="form" :model="form" label-width="90px" class="formBox">
+              <div class="box1">
+                <el-form-item label="付款日期：">
+                  <el-date-picker type="date" placeholder="选择日期" v-model="form.date" style="width: 100%;"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="付款金额：">
+                  <el-input style="width:80%;" placeholder="请输入" v-model="form.money"></el-input><span style="display:inline-block;width:20%;">元</span>
+                </el-form-item>
+              </div>             
+              <el-form-item style="width:60%;margin:0 auto;">
+                <el-button type="primary" size="medium" @click="onSubmit" style="min-width:100px">&nbsp;保存&nbsp;</el-button>
+              </el-form-item>
+            </el-form>
+            <!-- 定期付款 -->
+            <el-form v-if="radio==1" ref="form1" :model="form1" label-width="90px" class="formBox formBox1">
+              <div class="box2">
+                <el-form-item label="总金额：">
+                  <el-input placeholder="请输入" v-model="form1.money"></el-input>
+                </el-form-item>
+                <el-form-item label="付款周期：">
+                  <el-input style="width:58%;" placeholder="请输入" v-model="form1.cycle"></el-input>
+                  <el-select style="width:40%" v-model="form1.region" placeholder="请选择">
+                    <el-option label="天" value="day"></el-option>
+                    <el-option label="周" value="week"></el-option>
+                    <el-option label="月" value="month"></el-option>
+                    <el-option label="年" value="year"></el-option>
+                  </el-select>
+                </el-form-item>
+                <p>
+                  <el-form-item label="付款周期：">
+                    <el-input style="display:inline-block;width:55%;" placeholder="请输入" v-model="form1.money"></el-input><span style="display:inline-block;width:40%;text-align:left;text-indent:8px;">期</span>
+                  </el-form-item>
+                </p>
+                <!-- 日期 -->
+                <el-row>
+                  <el-col :span="12"><el-form-item label="付款日期：">
+                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
+                </el-form-item></el-col>
+                  <el-col :span="12"><el-form-item label="应付：" style="display:inline-block;width:83%; margin-right:8px;">
+                  <el-input placeholder="请输入" v-model="form1.money1"></el-input>
+                </el-form-item>元</el-col>
+                </el-row>
+                <!-- 日期 -->
+                <el-row>
+                  <el-col :span="12"><el-form-item label="付款日期：">
+                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
+                </el-form-item></el-col>
+                  <el-col :span="12"><el-form-item label="应付：" style="display:inline-block;width:83%; margin-right:8px;">
+                  <el-input placeholder="请输入" v-model="form1.money2"></el-input>
+                </el-form-item>元</el-col>
+                </el-row>
+                <!-- 日期 -->
+                <el-row>
+                  <el-col :span="12"><el-form-item label="付款日期：">
+                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date3" style="width: 100%;"></el-date-picker>
+                </el-form-item></el-col>
+                  <el-col :span="12"><el-form-item label="应付：" style="display:inline-block;width:83%; margin-right:8px;">
+                  <el-input placeholder="请输入" v-model="form1.money3"></el-input>
+                </el-form-item>元</el-col>
+                </el-row>
+              </div>             
+              <el-form-item style="width:60%;margin:0 auto;padding-bottom:10px;">
+                <el-button type="primary" size="medium" @click="onSubmit" style="min-width:100px">&nbsp;保存&nbsp;</el-button>
+              </el-form-item>
+            </el-form>
+            <!-- 阶段付款 -->
+
+             <el-form v-if="radio==2" ref="form3" :model="form3" label-width="90px" class="formBox">
+              <div class="box2">
+                <el-row style="padding:15px 0; background-color:#eee;border-radius:5px;">
+                  <el-col :span="12"><el-form-item label="总金额：" style="display:inline-block;width:83%; margin-right:8px; margin-bottom:0;">
+                  <el-input placeholder="请输入" v-model="form1.money1"></el-input>
+                </el-form-item>元</el-col>
+                  <el-col :span="10"><el-form-item label-width="100px" label="付款阶段数：" style="margin-bottom:0;">
+                  <el-input placeholder="请输入" v-model="form1.money1"></el-input>
+                </el-form-item></el-col>
+                </el-row>
+                <!-- 第一阶段 -->
+                <p class="stageTit">第一阶段</p>
+                <el-row>
+                  <el-col :span="12"><el-form-item label="付款日期：">
+                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
+                </el-form-item></el-col>
+                  <el-col :span="12"><el-form-item label="应付：" style="display:inline-block;width:83%; margin-right:8px;">
+                  <el-input placeholder="请输入" v-model="form1.money1"></el-input>
+                </el-form-item>元</el-col>
+                </el-row>
+                <!-- 第二阶段 -->
+                <p class="stageTit">第二阶段</p>
+                <el-row>
+                  <el-col :span="12"><el-form-item label="付款日期：">
+                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
+                </el-form-item></el-col>
+                  <el-col :span="12"><el-form-item label="应付：" style="display:inline-block;width:83%; margin-right:8px;">
+                  <el-input placeholder="请输入" v-model="form1.money1"></el-input>
+                </el-form-item>元</el-col>
+                </el-row>
+                <!-- 第三阶段 -->
+                <p class="stageTit">第三阶段</p>
+                <el-row>
+                  <el-col :span="12"><el-form-item label="付款日期：">
+                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
+                </el-form-item></el-col>
+                  <el-col :span="12"><el-form-item label="应付：" style="display:inline-block;width:83%; margin-right:8px;">
+                  <el-input placeholder="请输入" v-model="form1.money1"></el-input>
+                </el-form-item>元</el-col>
+                </el-row>
+              </div>             
+              <el-form-item style="width:60%;margin:0 auto;padding-bottom:10px;">
+                <el-button type="primary" size="medium" @click="onSubmit" style="min-width:100px">&nbsp;保存&nbsp;</el-button>
+              </el-form-item>
+            </el-form>
           </div>
         </div>
       </div>
@@ -153,6 +272,33 @@
         name: "AddContract",
       data(){
           return{
+            form:{
+              date:'',
+              money:''
+            },
+            form1:{
+              money:'',
+              money1:'',
+              money2:'',
+              money3:'',
+              date1:'',
+              date2:'',
+              date3:'',
+              cycle:'',
+              region:''
+            },
+            form3:{
+              accountMoney:'',
+              stage:'',
+              date:'',
+              money:'',
+              date1:'',
+              money1:'',
+              date2:'',
+              money2:'',
+            },
+
+            radio:0,
             show:false,
             Choice:false,
             payment:false,
@@ -205,6 +351,38 @@
       }
     }
 </script>
+
+<style scoped>
+  .payWay_tit{
+    height: 50px;
+    line-height: 50px;
+    border-bottom:1px solid #ddd;
+  }
+  .box1{
+    padding-top:20px;
+    text-align: center;
+    width: 60%;
+    margin:0 auto;
+
+  }
+  .stageTit{
+    font-size: 14px;
+    padding-left: 8px;
+    color:#606266;
+    font-weight: bold;
+    line-height: 35px;
+  }
+  .formBox .el-form-item__label{
+    font-weight: bold;
+  }
+  .box2{
+    padding-top:20px;
+
+  }
+  .formBox1 .el-form-item{
+    margin-bottom:15px;
+  }
+</style>
 
 <style scoped>
   .box>p{

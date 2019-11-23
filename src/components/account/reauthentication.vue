@@ -1,7 +1,7 @@
 <template>
     <div class="afresh_box">
         <div class="afresh_lift">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" >
                 <!--企业信息-->
                 <div class="box">
                     <div class="afresh_title">
@@ -397,15 +397,15 @@
     .afresh_box {
         width: 100%;
         margin: 0 auto;
-        min-width:1250px;
+        /* min-width:1250px; */
     }
 
    .afresh_box .afresh_lift {
         width: 100%;
     }
     .afresh_box .box{
-        width: 90%;
-        margin: 20px auto 0 auto;
+        /* width: 90%; */
+        margin: 10px auto 0 auto;
         background: #ffffff;
     }
     .afresh_box .afresh_list {
@@ -417,7 +417,7 @@
     }
 
     .afresh_box .afresh_content {
-        width: 60%;
+        width:70%;
     }
 
     .afresh_box .upload p {
@@ -429,13 +429,13 @@
 </style>
 <style>
     .afresh_box .name {
-        width: 48%;
+        width: 50%;
     }
 
     .afresh_box .second {
         position: relative;
         margin-top: -62px;
-        margin-left: 440px;
+        margin-left: 50%;
     }
 
     .afresh_box .avatar-uploader .el-upload {
@@ -532,7 +532,7 @@
     }
 
     .afresh_box .icCard .second {
-        margin-left: 340px;
+        /* margin-left: 340px; */
     }
 
     .afresh_box .icCard .name {
