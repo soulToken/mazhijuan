@@ -41,6 +41,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 23
 # 未完成部分 以及原因
 7：点击付款方式 应该是什么页面？
-9: 不明白那里不一样
+
 
 18： 已经有弹窗  后续操作不知道需要不需要写
